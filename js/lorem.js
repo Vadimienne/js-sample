@@ -1,6 +1,7 @@
 'use strict'
 
-//alert("preworking");
+//Генератор текста
+//В случайном порядке чередует слова из заготовленного файла
 var xml = new XMLHttpRequest();
 xml.open("GET", "lorem.txt", false);
 xml.send();
@@ -14,9 +15,6 @@ else{
 
 var lorem = xml.responseText;
 lorem = lorem.split(" ");
-//alert(lorem.length);
-//alert("LOREM: " + lorem[Math.floor(Math.random() * 100)]);
-//alert(Math.floor(Math.random() * 100));
 
 var genText = function(nWords){
   var text = "";
@@ -42,18 +40,83 @@ var genText = function(nWords){
   return text;
 }
 
+//Изначально разметка для постов генерировалась
+//через createElement и createTextNode.
+//По мере добавления новых элементов,
+//было принято решение написать шаблон разметки
+//поста и работать с ним, т.к. стуктура всех
+//постов одинакова,
+//редактировать шаблон легче
+//и читаемость лучше.
+var createPost = function (text, userIcon, userName) {
+  var postTemplate = `<div class="post-container">
+    <div class="post-head">
+      <img src="${userIcon}" alt="" class="userIcon">
+      <div class="userName">${userName}</div>
+    </div>
+    <div class="post-content">
+      <p class="content-text">${text}</p>
+      <img src="" alt="" class="content-img">
+    </div>
+    <div class="post-footer">
+      <div class="like_btn"></div>
+    </div>
+  </div>`;
+
+  var feed = document.querySelector(".feed");
+  feed.innerHTML += postTemplate;
+}
+
+//Генерируется достаточное для появления прокрутки
+//количество постов, чтобы работало событие onscroll.
+while (document.querySelector(".feed").clientHeight <=
+      document.documentElement.clientHeight)
+{
+  createPost(genText(70), '/img/defaultico.png', "Default Person");
+}
 
 
-//alert("working");
-const defaultNumOfPosts = 5;
-for (var i = 0; i < defaultNumOfPosts; i++) {
+//Генерация нового поста, когда достигнута
+//верхняя граница ныне существующего.
+window.onscroll = function() {
+  var doc = document.documentElement;
+  var lastPost = document.querySelector(".feed").lastElementChild;
+  if (lastPost.getBoundingClientRect().top < document.documentElement.clientHeight){
+    createPost(genText(70), "/img/defaultico.png", "Default Person");
+    lastPost = document.querySelector(".feed").lastChild;
+  }
+}
+
+
+// Черновик.
+// Код, который появился в ходе написания проекта,
+// но был переписан правильно выше или
+// убран за ненадобностью.
+
+/*var createPost = function () {
   var body = document.querySelector(".feed");
   var newElem = document.createElement("p");
   newElem.classList.add("post");
   var node = document.createTextNode(genText(70));
   newElem.appendChild(node);
   body.appendChild(newElem);
-}
+  createButton();
+}*/
+
+/*var createButton = function () {
+  var post = document.querySelector(".feed").lastChild;
+  var button = document.createElement("img");
+  button.classList.add("like_btn");
+  button.src = "/img/like_btn.png"
+  post.appendChild(button);
+}*/
+
+/*var body = document.querySelector(".feed");
+var newElem = document.createElement("p");
+newElem.classList.add("post");
+var node = document.createTextNode(genText(70));
+newElem.appendChild(node);
+body.appendChild(newElem);*/
 
 //document.querySelector(".post").style.color = "red";
 
@@ -67,16 +130,6 @@ for (var i = 0; i < defaultNumOfPosts; i++) {
     return false;
   }
 }*/
-
-var isScrolled = function() {
-  var lastPost = document.querySelector(".feed").lastChild;
-  var lastCoords = lastPost.getBoundingClientRect().bottom;
-  if (lastCoords <= document.documentElement.clientHeight)
-  {
-    alert("scrolled!");
-    return true;
-  }
-}
 
 /*document.documentElement.mousemove = function(){
 if (isScrolled()){
@@ -100,15 +153,17 @@ if (isScrolled()){
   }
 }*/
 
-window.onscroll = function() {
-  var doc = document.documentElement;
-  var lastPost = document.querySelector(".feed").lastElementChild;
-  if (lastPost.getBoundingClientRect().top < document.documentElement.clientHeight){
-    var newElem = document.createElement("p");
-    newElem.classList.add("post");
-    var node = document.createTextNode(genText(70));
-    newElem.appendChild(node);
-    body.appendChild(newElem);
-    lastPost = document.querySelector(".feed").lastChild;
+/*const defaultNumOfPosts = 5;
+for (var i = 0; i < defaultNumOfPosts; i++) {
+  createPost(genText(70), '/img/defaultico.png', "Default Person");
+}*/
+
+/*var isScrolled = function() {
+  var lastPost = document.querySelector(".feed").lastChild;
+  var lastCoords = lastPost.getBoundingClientRect().bottom;
+  if (lastCoords <= document.documentElement.clientHeight)
+  {
+    alert("scrolled!");
+    return true;
   }
-}
+}*/

@@ -7,6 +7,9 @@ else{
   alert("nonono");
 }8*/
 
+//Набор функций для открывания верхнего
+//навигационного меню.
+
 var getNavBar = document.querySelector(".nav");
 var navBarStatus = false;
 
