@@ -1,5 +1,6 @@
 html {
 }
+
 .head {
   position: absolute;
   width: 100%;
@@ -9,13 +10,13 @@ html {
   font-size: 6vw;
   text-transform: capitalize;
   user-select: none;
-  z-index: 100;
 }
 
 video {
-  z-index: -2;
   position: fixed;
   opacity: 0.7;
+  z-index: -10;
+  display: none;
 }
 
 .nav {
@@ -31,8 +32,8 @@ video {
   background-color: rgba(20, 20, 20, .5);
   font-size: 4.5vw;
   visibility: hidden;
-  z-index: -1;
   transition: 0.06s;
+  z-index: -1;
 }
 
 .nav li {
@@ -40,7 +41,7 @@ video {
 }
 
 .subnav{
-  display: flex;
+  display: none;
   background-color: black;
   margin-left: 2vw;
   margin-right: 2vw;
@@ -66,16 +67,76 @@ video {
 
 }
 
+.content-text {
+  border-bottom: 1px solid grey;
+}
+
 .like_btn{
   height:6vw;
-  width: 6vw;
+  width: 7vw;
   background-image: url("/img/like_btn.png");
+  background-size: 7vw 6vw;
+  background-repeat: no-repeat;
+  z-index: 101;
+  opacity: 0.3;
+  margin-right: 3vw;
+}
+
+.like_active{
+  background-image: url("/img/like_btn_on.png");
+  opacity: 1;
+}
+
+.comm_btn{
+  height:6vw;
+  width: 6vw;
+  background-image: url("/img/comment_btn.png");
   background-size: 6vw;
   background-repeat: no-repeat;
+  z-index: 101;
+  opacity: 0.3;
+}
+
+.comment-field{
+  display:none;
+  visibility: hidden;
+}
+
+.comment-field-active{
+  display: block;
+  visibility: visible;
+}
+
+.comm_input_placeholder{
+  color:grey;
+}
+
+.partic_comm {
+  display:flex;
+  margin-bottom: 1vw;
+  padding-bottom: 1vw;
+  border-bottom: 1px solid gray;
+}
+
+.comm-icon {
+  height: 4vw;
+  width:auto;
+}
+
+.comment_inpt{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 
 .post-footer{
-  height:100px;
+  display:flex;
+  z-index: 100;
+  border-bottom: 1px solid grey;
 }
 
 .post-head{
@@ -88,13 +149,16 @@ video {
 }
 
 .feed{
-  margin-left: 2vw;
-  width: 40vw;
+
+  margin-left: auto;
+  margin-right: auto;
+  width: 80vw;
   border: 0px solid blue;
 
 }
 
 .side-menu{
+  display: none;
   border: 5px solid green;
   position: fixed;
   top:20vh;
