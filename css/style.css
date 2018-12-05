@@ -93,7 +93,7 @@ video {
 .like_btn{
   height:6vw;
   width: 7vw;
-  background-image: url("/img/like_btn.png");
+  background-image: url("../img/like_btn.png");
   background-size: 7vw 6vw;
   background-repeat: no-repeat;
   z-index: 101;
@@ -102,14 +102,14 @@ video {
 }
 
 .like_active{
-  background-image: url("/img/like_btn_on.png");
+  background-image: url("../img/like_btn_on.png");
   opacity: 1;
 }
 
 .comm_btn{
   height:6vw;
   width: 6vw;
-  background-image: url("/img/comment_btn.png");
+  background-image: url("../img/comment_btn.png");
   background-size: 6vw;
   background-repeat: no-repeat;
   z-index: 101;

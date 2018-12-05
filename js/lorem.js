@@ -2,7 +2,7 @@
 
 //Генератор текста
 //В случайном порядке чередует слова из заготовленного файла
-var xml = new XMLHttpRequest();
+/*var xml = new XMLHttpRequest();
 xml.open("GET", "lorem.txt", false);
 xml.send();
 if (xml.status != 200){
@@ -13,7 +13,8 @@ else{
   //alert(xml.responseText);
 }
 
-var lorem = xml.responseText;
+var lorem = xml.responseText;*/
+var lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Fringilla urna porttitor rhoncus dolor purus non enim praesent elementum. Pulvinar elementum integer enim neque volutpat ac. Felis donec et odio pellentesque diam volutpat commodo sed. Nisi quis eleifend quam adipiscing vitae proin sagittis nisl rhoncus. Sed cras ornare arcu dui vivamus. Consectetur adipiscing elit pellentesque habitant morbi tristique. Pretium aenean pharetra magna ac. Sed turpis tincidunt id aliquet risus feugiat. Arcu vitae elementum curabitur vitae nunc sed. Ut lectus arcu bibendum at varius vel pharetra vel. Dictumst quisque sagittis purus sit amet volutpat consequat. Quis vel eros donec ac odio tempor orci dapibus ultrices. Mi tempus imperdiet nulla malesuada pellentesque elit eget. In pellentesque massa placerat duis ultricies lacus. Fusce id velit ut tortor pretium viverra suspendisse potenti."
 lorem = lorem.split(" ");
 
 var genText = function(nWords){
@@ -113,7 +114,7 @@ function enterPressHandler(event){
 
       newComment.classList.add("partic_comm");
 
-      commIcon.src = "/img/youIcon.png";
+      commIcon.src = "img/youIcon.png";
       commIcon.classList.add("comm-icon");
 
       commText.innerHTML = tar;
@@ -231,7 +232,7 @@ var createPost = function (text, userIcon, userName)  {
 while (document.querySelector(".feed").clientHeight <=
       document.documentElement.clientHeight)
 {
-  createPost(genText(randInt(120)), '/img/defaultico.png', "Default Person");
+  createPost(genText(randInt(120)), 'img/defaultico.png', "Default Person");
 }
 
 
@@ -242,7 +243,7 @@ var scrollingHandler = function () {
   var doc = document.documentElement;
   var lastPost = document.querySelector(".feed").lastElementChild;
   if (lastPost.getBoundingClientRect().top < document.documentElement.clientHeight){
-    createPost(genText(randInt(120)), "/img/defaultico.png", "Default Person");
+    createPost(genText(randInt(120)), "img/defaultico.png", "Default Person");
     lastPost = document.querySelector(".feed").lastChild;
   }
 }
