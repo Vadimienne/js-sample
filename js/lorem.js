@@ -123,6 +123,7 @@ function enterPressHandler(event){
       newComment.appendChild(commText);
       comments.appendChild(newComment);
       event.target.innerText = "";
+      event.target.blur();
     }
   }
     //event.target.innerText
